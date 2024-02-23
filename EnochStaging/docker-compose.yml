@@ -1,0 +1,42 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5435:5432
+    volumes:
+      - ../Dump/20240215.09.46.07.sql:/docker-entrypoint-initdb.d/database.sql
+    networks:
+      - databaseTunnel
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  
+  blazorapp:
+    build: ..
+    ports:
+      - 7890:8080
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - pec_tickets=user id=postgres; password=postgres; server=db; database=postgres; port=5432;
+    depends_on:
+      - db 
+    networks:
+      - databaseTunnel
+    healthcheck:
+      test: curl --fail http://localhost:7890/health || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
+      
+networks:
+  databaseTunnel:
+    driver: bridge
