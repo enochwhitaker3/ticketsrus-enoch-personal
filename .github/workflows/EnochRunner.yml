@@ -20,7 +20,7 @@ jobs:
         run: |
           ls -la
           docker compose up --build -d
-        working-directory: ./../../ticketsrus-cort-enoch-parker/ticketsrus-cort-enoch-parker/EnochStaging
+        working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/EnochStaging
 
   success:
     name: One with everything
