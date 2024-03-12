@@ -21,13 +21,8 @@ jobs:
           ls -la
           docker compose up --build -d
         working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/EnochStaging
-
-  success:
-    name: One with everything
-    runs-on: enoch
-    steps:
-      - uses: actions/checkout@master
-      - name: Microsoft Teams Notification
+      
+      - name: Teams notification
         uses: skitionek/notify-microsoft-teams@master
         if: always()
         with:
@@ -35,14 +30,4 @@ jobs:
           needs: ${{ toJson(needs) }}
           job: ${{ toJson(job) }}
           steps: ${{ toJson(steps) }}
-
-  if_failure:
-    name: Only if failure
-    runs-on: enoch
-    steps:
-      - uses: actions/checkout@master
-      - name: Microsoft Teams Notification
-        uses: skitionek/notify-microsoft-teams@master
-        if: failure()
-        with:
-          webhook_url: ${{ secrets.ENOCH_WEBHOOK }}
+          overwrite: "{title: `Overwrote title in ${workflow_link}`}"
