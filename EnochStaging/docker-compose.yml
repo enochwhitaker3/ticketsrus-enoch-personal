@@ -51,9 +51,9 @@ services:
     networks:
       otel:
      
-  prometheus:
+  prometheus-enoch:
     image: prom/prometheus:v2.43.0
-    container_name: prometheus
+    container_name: prometheus-enoch
     hostname: prometheus
     restart: unless-stopped
     ports:
