@@ -54,7 +54,7 @@ public class TicketController : ControllerBase
     {
         try
         {
-            await ticketService.UpdateTicket(ticket.Id);
+                                 await ticketService.UpdateTicket(ticket.Id);
         }
         catch (TicketAlreadyScannedException)
         {
