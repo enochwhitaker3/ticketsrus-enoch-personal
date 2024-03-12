@@ -22,7 +22,7 @@ jobs:
           docker compose up --build -d
         working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/EnochStaging
       
-      - name: Teams notification
+      - name: Teams Noti
         uses: skitionek/notify-microsoft-teams@master
         if: always()
         with:
@@ -30,4 +30,4 @@ jobs:
           needs: ${{ toJson(needs) }}
           job: ${{ toJson(job) }}
           steps: ${{ toJson(steps) }}
-          overwrite: "{title: `Overwrote title in ${workflow_link}`}"
+          overwrite: "{title: `Hey! Somebody get this guy ${workflow_link}`}"
