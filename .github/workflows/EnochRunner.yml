@@ -1,4 +1,4 @@
-name: enochrunner
+name: EnochRunner
 on: [push]
     
 jobs:
