@@ -57,7 +57,7 @@ services:
     hostname: prometheus-enoch
     restart: unless-stopped
     ports:
-      - 9090:9090
+      - 9092:9090
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./prometheus-enoch/prometheus.yml:/etc/prometheus/prometheus.yml
