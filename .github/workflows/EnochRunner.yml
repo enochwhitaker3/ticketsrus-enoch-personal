@@ -27,9 +27,6 @@ jobs:
           dotnet format --verify-no-changes --severity warn
         working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/WebApp
 
-
-
-
       - name: Teams Noti
         uses: skitionek/notify-microsoft-teams@master
         if: always()
