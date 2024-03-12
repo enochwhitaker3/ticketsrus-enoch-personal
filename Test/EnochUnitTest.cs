@@ -1,0 +1,20 @@
+﻿using System.Net.Http;
+using System.Net.Http.Json;
+using FluentAssertions;
+using RazorClassLib.Data;
+using WebApp.Exceptions;
+
+namespace Test;
+
+public class EnochUnitTest
+{
+    [Fact]
+    public void AddingTwoNumbers()
+    {
+        int number1 = 3;
+        int number2 = 2;
+        int number3 = number1 + number2;
+
+        number3.Should().Be(5);
+    }
+}

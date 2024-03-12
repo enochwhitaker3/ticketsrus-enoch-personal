@@ -47,7 +47,7 @@ public class TicketService : ITicketService
 
         return await conn.Table<Ticket>()
             .Where(t => t.Id == id)
-            .FirstOrDefaultAsync();  
+            .FirstOrDefaultAsync();
     }
 
     public async Task<List<Ticket>> GetAllTickets()
@@ -56,7 +56,7 @@ public class TicketService : ITicketService
         {
             await Init();
 
-            return await conn.GetAllWithChildrenAsync<Ticket>();    
+            return await conn.GetAllWithChildrenAsync<Ticket>();
         }
         catch (Exception ex)
         {
@@ -106,6 +106,6 @@ public class TicketService : ITicketService
         await Init();
 
         await conn.DeleteAllAsync<Ticket>();
-       // await conn.DropTableAsync<Ticket>();
+        // await conn.DropTableAsync<Ticket>();
     }
 }

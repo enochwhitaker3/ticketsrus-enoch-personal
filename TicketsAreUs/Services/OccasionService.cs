@@ -65,7 +65,7 @@ public class OccasionService : IOccasionService
         }
         catch (Exception ex)
         {
-            StatusMessage = string.Format("Failed to add {0}. Error: {1}", occasion.OccasionName, ex.Message);   
+            StatusMessage = string.Format("Failed to add {0}. Error: {1}", occasion.OccasionName, ex.Message);
         }
     }
 
@@ -75,7 +75,7 @@ public class OccasionService : IOccasionService
 
         return await conn.Table<Occasion>()
             .Where(o => o.OccasionName == name)
-            .FirstOrDefaultAsync();   
+            .FirstOrDefaultAsync();
     }
 
     public async Task<Occasion> GetOccasion(int id)
@@ -92,6 +92,6 @@ public class OccasionService : IOccasionService
         await Init();
 
         await conn.DeleteAllAsync<Occasion>();
-       // await conn.DropTableAsync<Occasion>();
+        // await conn.DropTableAsync<Occasion>();
     }
 }

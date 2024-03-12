@@ -1,6 +1,6 @@
-﻿using RazorClassLib.Services;
+﻿using System.Net.Http.Json;
 using RazorClassLib.Data;
-using System.Net.Http.Json;
+using RazorClassLib.Services;
 
 namespace TicketsAreUs.Data;
 
@@ -66,11 +66,11 @@ public class SyncDatabase
     {
         GetPreferences();
         var MauiOccasions = await ocasionService.GetAllOccasions();
-        foreach (var  occasion in OnlineOccasions)
+        foreach (var occasion in OnlineOccasions)
         {
             var offlineOccasion = MauiOccasions
                 .Where(o => o.OccasionName == occasion.OccasionName)
-                .FirstOrDefault(); 
+                .FirstOrDefault();
 
             if (offlineOccasion is null)
             {
