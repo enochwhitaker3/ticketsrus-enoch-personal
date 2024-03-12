@@ -148,9 +148,9 @@
 
     public Occasion currentOccasion { get; set; } = new();
     public User currentUser { get; set; } = new();
-    public string userEmail { get; set; }
-    public string fromMail { get; set; }
-    private string senderKey { get; set; }
+    public string? userEmail { get; set; }
+    public string? fromMail { get; set; }
+    private string? senderKey { get; set; }
 
 
     public IEnumerable<Ticket> tickets { get; set; } = new List<Ticket>();
@@ -172,33 +172,38 @@
 
         try
         {
-            var from = new MailAddress(fromMail, "TicketsRUs");
-            var to = receiverEmail;
-            var message = new MailMessage(from, to);
-
-            QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qRCodeData = qrGenerator.CreateQrCode(newTicket.Guid.ToString(), QRCodeGenerator.ECCLevel.Q);
-            PngByteQRCode qrCode = new PngByteQRCode(qRCodeData);
-            byte[] image = qrCode.GetGraphic(5);
-            Stream stream = new MemoryStream(image);
-            var qrAttachment = new Attachment(stream, "qrCode.png");
-            string body = $"<img src=\"ci:{qrAttachment.ContentId}\" />";
-            message.Attachments.Add(qrAttachment);
-
-            message.Subject = "no-reply Event Ticket QR Code";
-            message.IsBodyHtml = true;
-            message.Body = $"<html><body><h1>Event Ticket</h1><p>Use this ticket at the entranct to get it.</p>{body}</body></html>";
-
-            using (var client = new System.Net.Mail.SmtpClient("smtp.gmail.com"))
+            if(fromMail is null) { return "die";}
+            else 
             {
-                client.Port = 587;
-                client.EnableSsl = true;
+                var from = new MailAddress(fromMail, "TicketsRUs");
+                var to = receiverEmail;
+                var message = new MailMessage(from, to);
 
-                client.Credentials = new NetworkCredential(fromMail, senderKey);
+                QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                QRCodeData qRCodeData = qrGenerator.CreateQrCode(newTicket.Guid.ToString(), QRCodeGenerator.ECCLevel.Q);
+                PngByteQRCode qrCode = new PngByteQRCode(qRCodeData);
+                byte[] image = qrCode.GetGraphic(5);
+                Stream stream = new MemoryStream(image);
+                var qrAttachment = new Attachment(stream, "qrCode.png");
+                string body = $"<img src=\"ci:{qrAttachment.ContentId}\" />";
+                message.Attachments.Add(qrAttachment);
 
-                client.Send(message);
-            }
+                message.Subject = "no-reply Event Ticket QR Code";
+                message.IsBodyHtml = true;
+                message.Body = $"<html><body><h1>Event Ticket</h1><p>Use this ticket at the entranct to get it.</p>{body}</body></html>";
+
+                using (var client = new System.Net.Mail.SmtpClient("smtp.gmail.com"))
+                {
+                    client.Port = 587;
+                    client.EnableSsl = true;
+
+                    client.Credentials = new NetworkCredential(fromMail, senderKey);
+
+                    client.Send(message);
+                }
             return "Email Sent";
+            }
+
         }
         catch
         {

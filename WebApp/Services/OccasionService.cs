@@ -38,7 +38,7 @@ namespace WebApp.Services
         {
             var context = contextFactory.CreateDbContext();
             return await context.Occasions
-                .Where(o => o.Id == id)
+                .Where(o => o.Id == id) 
                 .Include(o => o.Tickets)
                 .FirstOrDefaultAsync();
         }

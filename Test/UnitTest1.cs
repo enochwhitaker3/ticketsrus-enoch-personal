@@ -29,7 +29,9 @@ namespace Test
             var grabOccasion = await httpClient.GetFromJsonAsync<Occasion>($"occasion/{1}");
 
             //Assert
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             newOccasion.OccasionName.Equals(grabOccasion.OccasionName);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
             newOccasion.Id.Equals(grabOccasion.Id);
         }
 
@@ -57,7 +59,9 @@ namespace Test
             var grabTicket = await httpClient.GetFromJsonAsync<Ticket>($"ticket/{1}");
 
             //Assert
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             newTicket.OccasionId.Equals(grabTicket.OccasionId);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
             newTicket.Guid.Equals(grabTicket.Guid);
             newTicket.Id.Equals(grabTicket.Id);
         }
@@ -87,7 +91,9 @@ namespace Test
             var updateTicket = await httpClient.GetFromJsonAsync<Ticket>($"ticket/{1}");
 
             //Assert
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             updateTicket.Guid.Equals(newTicket.Guid);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
             updateTicket.Id.Equals(newTicket.Id);
             updateTicket.IsUsed.Equals(true);
         }

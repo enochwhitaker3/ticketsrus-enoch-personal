@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>19a98f43-cdfb-4db6-a6a8-0b8d1079a4de</UserSecretsId>
+    <NoWarn>MSB3277</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -14,6 +15,21 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants>$(DefineConstants);WEB_APP</DefineConstants>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <NoWarn>8603</NoWarn>
+    <NoWarn>8618</NoWarn>
+    <NoWarn>0169</NoWarn>
+    <NoWarn>8602</NoWarn>
+    <NoWarn>8601</NoWarn>
+    <NoWarn>8604</NoWarn>
+    <NoWarn>8618</NoWarn>
+    <NoWarn>3277</NoWarn>
+
+  </PropertyGroup>
+
+
+
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="6.12.0" />
@@ -38,38 +54,7 @@
     <PackageReference Include="Serilog.Sinks.OpenTelemetry" Version="1.2.0" />
     <PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-
-	      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    <PackageReference Include="OpenTelemetry" Version="1.4.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.7.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.7.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.7.1" />
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.0.0-rc9.14" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.1.0-rc.2" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
-    <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
-    <PackageReference Include="Serilog.Sinks.OpenTelemetry" Version="1.0.0-dev-00188" />	  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-	  <PackageReference Include="OpenTelemetry" Version="1.4.0" />
-	  <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.7.0" />
-	  <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.7.0" />
-	  <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.7.1" />
-	  <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0" />
-	  <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.0.0-rc9.14" />
-	  <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.1.0-rc.2" />
-	  <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
-	  <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
-	  	      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    <PackageReference Include="OpenTelemetry" Version="1.4.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.7.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.7.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.7.1" />
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.0.0-rc9.14" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.1.0-rc.2" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
-    <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
-      </ItemGroup>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\RazorClassLib\RazorClassLib.csproj" />
