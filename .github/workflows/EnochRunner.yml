@@ -11,7 +11,7 @@ jobs:
         run: |  
           ls -la
           docker compose down -v
-          cd ../
+          cd ../../
           rm -rf ./ticketsrus-enoch-personal
           git clone https://${{secrets.ENOCH_GITHUB_KEY}}@github.com/enochwhitaker3/ticketsrus-enoch-personal.git
         working-directory: ./EnochStaging
