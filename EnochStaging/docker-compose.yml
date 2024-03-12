@@ -38,9 +38,9 @@ services:
       start_period: 20s
       timeout: 10s
 
-  blackbox:
+  blackbox-enoch:
     image: prom/blackbox-exporter:v0.23.0
-    container_name: blackbox
+    container_name: blackbox-enoch
     restart: unless-stopped
     ports:
       - 9115:9115
@@ -62,13 +62,13 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ./prometheus-enoch/prometheus.yml:/etc/prometheus/prometheus.yml
     depends_on:
-      - blackbox
+      - blackbox-enoch
     networks:
       otel:
       
-  loki:
+  loki-enoch:
     image: grafana/loki:2.8.0
-    container_name: loki
+    container_name: loki-enoch
     command: -config.file=/etc/loki/local-config.yaml
     volumes:
       - /etc/localtime:/etc/localtime:ro      
@@ -79,9 +79,9 @@ services:
     networks:
       otel:
 
-  grafana:
+  grafana-enoch:
     image: grafana/grafana:9.4.7
-    container_name: grafana
+    container_name: grafana-enoch
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
@@ -96,12 +96,12 @@ services:
       - 3000:3000
     depends_on:
       - prometheus-enoch 
-      - loki  
+      - loki-enoch
     networks:
       otel:
       
   otel-collector:
-    container_name: otel
+    container_name: otel-enoch
     hostname: otel
     image: otel/opentelemetry-collector-contrib:0.75.0
     command: ["--config=/etc/otel-collector-config.yaml"]
