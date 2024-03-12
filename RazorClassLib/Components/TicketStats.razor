@@ -25,11 +25,20 @@
                 </tr>
                 @foreach (var ticket in tickets)
                 {
-                    <tr>
-                        <td>@ticket.Occasion.OccasionName</td>
-                        <td>@ticket.Guid</td>
-                        <td>@ticket.IsUsed</td>
-                    </tr>
+                    if(ticket.Occasion is null)
+                    {
+                        <tr>
+
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>@ticket.Occasion.OccasionName</td>
+                            <td>@ticket.Guid</td>
+                            <td>@ticket.IsUsed</td>
+                        </tr>
+                    }
                 }
             </table>
         </div>
