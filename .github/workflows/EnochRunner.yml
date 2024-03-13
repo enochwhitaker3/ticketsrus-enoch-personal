@@ -22,7 +22,7 @@ jobs:
           docker compose up --build -d
         working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/EnochStaging
       
-      - name: "linting and warnings"
+      - name: "linting"
         run: |
           dotnet format --verify-no-changes --severity warn
         working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/WebApp
