@@ -30,7 +30,7 @@ jobs:
         working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/WebApp
 
       - name: "warnings as errors"
-        run: |
+        run: | 
           dotnet build --warnaserror
         working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal
 
