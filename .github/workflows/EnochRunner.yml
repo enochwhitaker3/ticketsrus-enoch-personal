@@ -25,6 +25,7 @@ jobs:
       - name: "linting and warnings"
         run: |
           dotnet format --verify-no-changes --severity warn
+          cd../
           dotnet build --warnaserror
         working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/WebApp
 
