@@ -29,6 +29,11 @@ jobs:
           dotnet build --warnaserror
         working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/WebApp
 
+      - name: "warnings as errors"
+        run: |
+          dotnet build --warnaserror
+        working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal
+
       - name: Teams Noti
         uses: skitionek/notify-microsoft-teams@master
         if: always()
