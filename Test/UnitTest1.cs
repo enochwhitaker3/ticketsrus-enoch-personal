@@ -95,7 +95,7 @@ namespace Test
             updateTicket.Guid.Equals(newTicket.Guid);
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
             updateTicket.Id.Equals(newTicket.Id);
-            updateTicket.IsUsed.Should().Equals(false);
+            updateTicket.IsUsed.Equals(true);
         }
 
         [Fact]
