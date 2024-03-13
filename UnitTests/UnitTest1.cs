@@ -13,6 +13,6 @@ public class EnochUnitTest
         int number2 = 5;
         int number3 = number1 + number2;
 
-        number3.Should().Be(5);
+        number3.Should().Be(8);
     }
 }
