@@ -22,9 +22,10 @@ jobs:
           docker compose up --build -d
         working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/EnochStaging
       
-      - name: "linting"
+      - name: "linting and warnings"
         run: |
           dotnet format --verify-no-changes --severity warn
+          dotnet build --warnaserror
         working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/WebApp
 
       - name: Teams Noti

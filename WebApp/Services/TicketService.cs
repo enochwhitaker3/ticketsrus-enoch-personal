@@ -39,19 +39,23 @@ public class TicketService : ITicketService
     public async Task<Ticket> GetTicket(int id)
     {
         var context = contextFactory.CreateDbContext();
+#pragma warning disable CS8603 // Possible null reference return.
         return await context.Tickets
             .Where(t => t.Id == id)
             .Include(t => t.Occasion)
             .FirstOrDefaultAsync();
+#pragma warning restore CS8603 // Possible null reference return.
     }
 
     public async Task<Ticket> GetTicketId(Guid guid)
     {
         var context = contextFactory.CreateDbContext();
+#pragma warning disable CS8603 // Possible null reference return.
         return await context.Tickets
             .Where(t => t.Guid == guid)
             .Include(t => t.Occasion)
             .FirstOrDefaultAsync();
+#pragma warning restore CS8603 // Possible null reference return.
     }
 
     public async Task UpdateTicket(int id)
