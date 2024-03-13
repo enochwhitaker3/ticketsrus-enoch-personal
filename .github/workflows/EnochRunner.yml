@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: "clean/clone" 
         run: |  
-          ls -la
+          ls -la 
           docker compose down -v
           cd ../../
           rm -rf ./ticketsrus-enoch-personal
@@ -31,6 +31,16 @@ jobs:
         run: | 
           dotnet build --warnaserror
         working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal
+      
+      - name: "Unit tests"
+        run: |
+            dotnet test --warnaserror
+        working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/UnitTests
+
+      - name: "Integration tests"
+        run: |
+            dotnet test --warnaserror
+        working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/Test
 
       - name: Teams Noti
         uses: skitionek/notify-microsoft-teams@master
