@@ -37,12 +37,10 @@ namespace WebApp.Services
         public async Task<Occasion> GetOccasion(int id)
         {
             var context = contextFactory.CreateDbContext();
-#pragma warning disable CS8603 // Possible null reference return.
             return await context.Occasions
                 .Where(o => o.Id == id)
                 .Include(o => o.Tickets)
                 .FirstOrDefaultAsync();
-#pragma warning restore CS8603 // Possible null reference return.
         }
 
         public async Task<Occasion> GetOccasionId(string name)
