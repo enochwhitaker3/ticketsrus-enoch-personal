@@ -50,7 +50,23 @@ builder.Logging.AddOpenTelemetry(options =>
     .AddConsoleExporter();
 });
 
-//{exporter="OTLP"}
+builder.Services.AddOpenTelemetry()
+      .ConfigureResource(resource => resource.AddService(serviceName))
+      .WithTracing(tracing => tracing
+          .AddAspNetCoreInstrumentation()
+          .AddConsoleExporter()
+          .AddZipkinExporter(o =>
+            o.Endpoint = new Uri("http://zipkin:9411"))
+          .AddOtlpExporter(o =>
+            o.Endpoint = new Uri("http://otel-collector:4317")))
+      .WithMetrics(metrics => metrics
+          .AddAspNetCoreInstrumentation()
+          .AddConsoleExporter()
+          .AddOtlpExporter(o =>
+            o.Endpoint = new Uri("http://otel-collector:4317"))
+          .AddMeter("Microsoft.AspNetCore.Hosting")
+          .AddMeter("Microsoft.AspNetCore.Server.Kestrel")
+          .AddMeter("System.Net.Http"));
 
 var app = builder.Build();
 
