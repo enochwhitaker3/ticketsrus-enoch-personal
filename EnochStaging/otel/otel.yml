@@ -5,26 +5,39 @@ receivers:
       http:
 
 exporters:
+  prometheus:
+    endpoint: otel:8889
+  otlp:
+    endpoint: tempo:4007
+    tls:
+      insecure: true
   loki:
     endpoint: http://loki:3100/loki/api/v1/push
+    tls:
+      insecure: true
   zipkin:
-    endpoint: "http://zipkin:9411/api/v2/spans"
+    endpoint: http://zipkin:9411/api/v2/spans
+    tls:
+      insecure: true
     format: proto
 
 extensions:
   health_check:
 
 processors:
-  # Data sources: traces, metrics, logs
   batch:
 
 service:
-  pipelines:
-    logs:
+  extensions: [zpages, health_check]
+  pipelines: 
+    metrics: 
       receivers: [otlp]
-      processors: [batch]
-      exporters: [loki]
+      exporters: [prometheus]
     traces:
       receivers: [otlp]
       processors: [batch]
       exporters: [zipkin, otlp]
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [loki]
