@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EnochTelemetry;
+using Microsoft.EntityFrameworkCore;
 using RazorClassLib.Data;
 using RazorClassLib.Request;
 using RazorClassLib.Services;
+using WebApp.EnochTelemetry;
 using WebApp.Exceptions;
 
 namespace WebApp.Services;
@@ -30,7 +32,8 @@ public class TicketService : ITicketService
 
     public async Task<List<Ticket>> GetAllTickets()
     {
-        using var myActivity = EnochTelemetry.EnochTelemetry.EnochGetAllTickets.StartActivity("Getting All Tickets");
+        using var myActivity = EnochTraces.EnochGetAllTickets.StartActivity("Getting All Tickets");
+        EnochMetrics.ticketCounter.Add(5);
 
         var context = contextFactory.CreateDbContext();
         return await context.Tickets

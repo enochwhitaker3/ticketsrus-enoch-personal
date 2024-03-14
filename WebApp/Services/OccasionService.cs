@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EnochTelemetry;
+using Microsoft.EntityFrameworkCore;
 using RazorClassLib.Data;
 using RazorClassLib.Services;
+using WebApp.EnochTelemetry;
 
 namespace WebApp.Services
 {
@@ -28,8 +30,9 @@ namespace WebApp.Services
 
         public async Task<List<Occasion>> GetAllOccasions()
         {
-            using var myActivity = EnochTelemetry.EnochTelemetry.EnochGetAllOccasions.StartActivity("Getting All Occasions");
-
+            using var myActivity = EnochTraces.EnochGetAllOccasions.StartActivity("Getting All Occasions");
+            EnochMetrics.ticketCounter.Add(5);
+            
             var context = contextFactory.CreateDbContext();
             return await context.Occasions
                 .Include(o => o.Tickets)

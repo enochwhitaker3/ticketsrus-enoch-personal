@@ -2,7 +2,7 @@
 
 namespace WebApp.EnochTelemetry
 {
-    public static class EnochTelemetry
+    public static class EnochTraces
     {
         public static readonly string OccasionsSource = "GetAllOccasions";
         public static readonly string TicketsSource = "GetAllTickets";
