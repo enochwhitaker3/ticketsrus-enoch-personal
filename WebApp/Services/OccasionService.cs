@@ -28,6 +28,8 @@ namespace WebApp.Services
 
         public async Task<List<Occasion>> GetAllOccasions()
         {
+            using var myActivity = EnochTelemetry.EnochTelemetry.EnochGetAllOccasions.StartActivity("Getting All Occasions");
+
             var context = contextFactory.CreateDbContext();
             return await context.Occasions
                 .Include(o => o.Tickets)

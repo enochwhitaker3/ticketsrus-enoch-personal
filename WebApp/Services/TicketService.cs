@@ -30,6 +30,8 @@ public class TicketService : ITicketService
 
     public async Task<List<Ticket>> GetAllTickets()
     {
+        using var myActivity = EnochTelemetry.EnochTelemetry.EnochGetAllTickets.StartActivity("Getting All Tickets");
+
         var context = contextFactory.CreateDbContext();
         return await context.Tickets
             .Include(t => t.Occasion)
