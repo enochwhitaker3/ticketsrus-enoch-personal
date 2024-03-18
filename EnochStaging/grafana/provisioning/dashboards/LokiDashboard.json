@@ -9,7 +9,7 @@
         "pluginName": "Loki"
       },
       {
-        "name": "DS_PROMETHEUS",
+        "name": "loki",
         "label": "prometheus",
         "description": "",
         "type": "datasource",
@@ -205,7 +205,7 @@
         {
           "allValue": null,
           "current": {},
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": "${loki}",
           "definition": "label_values(kube_pod_info, namespace)",
           "hide": 0,
           "includeAll": false,
@@ -227,7 +227,7 @@
         {
           "allValue": ".*",
           "current": {},
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": "${loki}",
           "definition": "label_values(mixin_pod_workload{namespace=\"$namespace\"}, workload)",
           "hide": 0,
           "includeAll": false,
@@ -249,7 +249,7 @@
         {
           "allValue": ".*",
           "current": {},
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": "${loki}",
           "definition": "label_values(mixin_pod_workload{namespace=\"$namespace\", workload=\"$workload\"}, pod)",
           "hide": 0,
           "includeAll": true,
