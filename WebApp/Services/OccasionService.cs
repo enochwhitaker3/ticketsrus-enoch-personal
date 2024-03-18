@@ -32,7 +32,6 @@ namespace WebApp.Services
         {
             using var myActivity = EnochTraces.EnochGetAllOccasions.StartActivity("Getting All Occasions");
             EnochMetrics.ticketCounter.Add(5);
-            
             var context = contextFactory.CreateDbContext();
             return await context.Occasions
                 .Include(o => o.Tickets)
