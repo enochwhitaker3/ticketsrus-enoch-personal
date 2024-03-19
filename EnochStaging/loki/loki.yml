@@ -24,6 +24,3 @@ schema_config:
       index:
         prefix: index_
         period: 24h
-
-limits_config:
-  max_outstanding_per_tenant: 4096
