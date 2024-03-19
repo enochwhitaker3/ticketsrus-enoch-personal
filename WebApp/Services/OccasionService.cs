@@ -29,8 +29,8 @@ namespace WebApp.Services
         {
             var context = contextFactory.CreateDbContext();
             context.Add(occasion);
-            await context.SaveChangesAsync();
             LogAddEvent(logger, $"Added Event {occasion.Id}"); //--------------------------------
+            await context.SaveChangesAsync();
         }
 
         public Task DropTables()
