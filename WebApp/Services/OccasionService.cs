@@ -15,11 +15,8 @@ namespace WebApp.Services
         static partial void LogGetAllEventsMessage(ILogger logger, string description);
 
         [LoggerMessage(Level = LogLevel.Information, Message = "Starting Logs for Getting Single Event by ID {description}")]
-        static partial void LogGetSingleEventbyIDMessage(ILogger logger, string description);
+        static partial void LogGetSingleEventMessage(ILogger logger, string description);
 
-        [LoggerMessage(Level = LogLevel.Information, Message = "Starting Logs for Getting Single Event by Name {description}")]
-        static partial void LogGetSingleEventbyNameMessage(ILogger logger, string description);
-        
         [LoggerMessage(Level = LogLevel.Critical, Message = "Starting Logs for Adding an Event {description}")]
         static partial void LogAddEvent(ILogger logger, string description);
 
@@ -34,7 +31,7 @@ namespace WebApp.Services
             context.Add(occasion);
             await context.SaveChangesAsync();
             LogAddEvent(logger, $"Added Event {occasion.Id}"); //--------------------------------
-        } 
+        }
 
         public Task DropTables()
         {
@@ -54,7 +51,7 @@ namespace WebApp.Services
 
         public async Task<Occasion> GetOccasion(int id)
         {
-            LogGetSingleEventbyIDMessage(logger, $"Getting event {id}"); //------------------------------
+            LogGetSingleEventMessage(logger, $"Getting event {id}"); //------------------------------
             var context = contextFactory.CreateDbContext();
 #pragma warning disable CS8603 // Possible null reference return.
 
@@ -63,12 +60,11 @@ namespace WebApp.Services
                 .Include(o => o.Tickets)
                 .FirstOrDefaultAsync();
 #pragma warning restore CS8603 // Possible null reference return.
-            
+
         }
 
         public async Task<Occasion> GetOccasionId(string name)
         {
-            LogGetSingleEventbyNameMessage(logger, $"Getting event {name}"); //------------------------------
             var context = contextFactory.CreateDbContext();
 #pragma warning disable CS8603 // Possible null reference return.
             return await context.Occasions

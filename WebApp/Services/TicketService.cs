@@ -13,8 +13,11 @@ public partial class TicketService : ITicketService
     private readonly ILogger<TicketService> logger;
     private IDbContextFactory<TicketContext> contextFactory;
 
-    [LoggerMessage(Level = LogLevel.Information, Message = "Starting Logs for Tickets {description}")]
+    [LoggerMessage(Level = LogLevel.Information, Message = "Starting Logs for Getting All Tickets {description}")]
     static partial void LogGetAllTicketsMessage(ILogger logger, string description);
+
+    [LoggerMessage(Level = LogLevel.Information, Message = "Starting Logs for Getting a Single Ticket by ID {description}")]
+    static partial void LogGetSingleTicketMessage(ILogger logger, string description);
 
     public TicketService(ILogger<TicketService> logger, IDbContextFactory<TicketContext> contextFactory)
     {
@@ -48,6 +51,7 @@ public partial class TicketService : ITicketService
     public async Task<Ticket> GetTicket(int id)
     {
         var context = contextFactory.CreateDbContext();
+        LogGetSingleTicketMessage(logger, $"Getting single ticket with id: {id}");
 #pragma warning disable CS8603 // Possible null reference return.
         return await context.Tickets
             .Where(t => t.Id == id)

@@ -141,6 +141,7 @@
 
 @code {
     public bool showBuy = true;
+    public Ticket ticket = new Ticket();
     public IEnumerable<Ticket> tickets { get; set; } = new List<Ticket>();
     public IEnumerable<Occasion> occasions { get; set; } = new List<Occasion>();
     private List<Occasion> MauiOccasions { get; set; } = new List<Occasion>();
@@ -150,6 +151,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        ticket = await ticketService.GetTicket(1);
         tickets = await ticketService.GetAllTickets();
         occasions = await occasionService.GetAllOccasions();
 

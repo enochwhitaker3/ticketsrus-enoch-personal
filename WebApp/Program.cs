@@ -15,7 +15,8 @@ using WebApp.Components;
 using WebApp.EnochTelemetry;
 using WebApp.Services;
 
-public partial class Program() {
+public partial class Program()
+{
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
