@@ -12,7 +12,6 @@ common:
       rules_directory: /loki/rules
   replication_factor: 1
   ring:
-    # instance_addr: 127.0.0.1
     kvstore:
       store: inmemory
 
@@ -25,3 +24,6 @@ schema_config:
       index:
         prefix: index_
         period: 24h
+
+limits_config:
+  max_outstanding_per_tenant: 4096
