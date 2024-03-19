@@ -128,7 +128,17 @@ services:
       - 9410:9411
     networks:
       otel:
-      
+
+  proxy:
+    image: nginx
+    container_name: enoch-proxy
+    ports:
+      - 3252:80
+    volumes:
+      - ./nginx-default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - otel
+     
 networks:
   otel:
   databaseTunnel:
