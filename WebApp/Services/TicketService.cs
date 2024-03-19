@@ -8,10 +8,14 @@ using WebApp.Exceptions;
 
 namespace WebApp.Services;
 
-public class TicketService : ITicketService
+public partial class TicketService : ITicketService
 {
     private readonly ILogger<TicketService> logger;
     private IDbContextFactory<TicketContext> contextFactory;
+
+    [LoggerMessage(Level = LogLevel.Information, Message = "Starting Logs for Tickets {description}")]
+    static partial void LogGetAllTicketsMessage(ILogger logger, string description);
+
     public TicketService(ILogger<TicketService> logger, IDbContextFactory<TicketContext> contextFactory)
     {
         this.logger = logger;
@@ -34,7 +38,7 @@ public class TicketService : ITicketService
     {
         using var myActivity = EnochTraces.EnochGetAllTickets.StartActivity("Getting All Tickets");
         EnochMetrics.ticketCounter.Add(5);
-
+        LogGetAllTicketsMessage(logger, "Getting All Tickets");
         var context = contextFactory.CreateDbContext();
         return await context.Tickets
             .Include(t => t.Occasion)

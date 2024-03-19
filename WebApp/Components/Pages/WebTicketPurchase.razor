@@ -156,6 +156,8 @@
     public IEnumerable<Ticket> tickets { get; set; } = new List<Ticket>();
     public IEnumerable<Occasion> occasions { get; set; } = new List<Occasion>();
 
+
+
     protected override async Task OnInitializedAsync()
     {
         tickets = await ticketService.GetAllTickets();
