@@ -1,4 +1,5 @@
-﻿using EnochTelemetry;
+﻿using System.Diagnostics;
+using EnochTelemetry;
 using Microsoft.EntityFrameworkCore;
 using RazorClassLib.Data;
 using RazorClassLib.Request;
@@ -39,10 +40,15 @@ public partial class TicketService : ITicketService
 
     public async Task<List<Ticket>> GetAllTickets()
     {
+        var stopWatch = Stopwatch.StartNew();
+        stopWatch.Start();
         using var myActivity = EnochTraces.EnochGetAllTickets.StartActivity("Getting All Tickets");
         EnochMetrics.ticketCounter.Add(5);
         LogGetAllTicketsMessage(logger, "Getting All Tickets");
         var context = contextFactory.CreateDbContext();
+        
+        stopWatch.Stop();
+        EnochMetrics.histogram.Record(stopWatch.Elapsed.Milliseconds);
         return await context.Tickets
             .Include(t => t.Occasion)
             .ToListAsync();
@@ -52,6 +58,14 @@ public partial class TicketService : ITicketService
     {
         var context = contextFactory.CreateDbContext();
         LogGetSingleTicketMessage(logger, $"Getting single ticket with id: {id}");
+
+        EnochMetrics.observableCountInteger += 1;
+
+        Random random = new Random();
+        EnochMetrics.observableUpAndDownInteger += random.Next(-10, 11);
+
+
+
 #pragma warning disable CS8603 // Possible null reference return.
         return await context.Tickets
             .Where(t => t.Id == id)

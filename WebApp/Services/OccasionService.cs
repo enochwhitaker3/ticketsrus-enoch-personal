@@ -46,6 +46,7 @@ namespace WebApp.Services
             LogGetAllEventsMessage(logger, "Got All Occasions"); 
 
             EnochMetrics.counter.Add(1);
+            EnochMetrics.up_n_down.Add(-1);
 
             return await context.Occasions
                 .Include(o => o.Tickets)
