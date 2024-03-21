@@ -43,7 +43,7 @@ namespace WebApp.Services
             using var myActivity = EnochTraces.EnochGetAllOccasions.StartActivity("Getting All Occasions");
             EnochMetrics.ticketCounter.Add(5);
             var context = contextFactory.CreateDbContext();
-            LogGetAllEventsMessage(logger, "Got All Occasions"); 
+            LogGetAllEventsMessage(logger, "Got All Occasions");
 
             EnochMetrics.counter.Add(1);
             EnochMetrics.up_n_down.Add(-1);

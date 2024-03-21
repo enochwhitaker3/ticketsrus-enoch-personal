@@ -46,7 +46,7 @@ public partial class TicketService : ITicketService
         EnochMetrics.ticketCounter.Add(5);
         LogGetAllTicketsMessage(logger, "Getting All Tickets");
         var context = contextFactory.CreateDbContext();
-        
+
         stopWatch.Stop();
         EnochMetrics.histogram.Record(stopWatch.Elapsed.Milliseconds);
         return await context.Tickets
