@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using global::EnochTelemetry
 @inject ILogger<WebEventHome> log
 
 <RazorClassLib.Components.EventHome></RazorClassLib.Components.EventHome>
@@ -7,6 +8,6 @@
 {
     protected override void OnInitialized()
     {
-                        log.LogInformation("We did it");
+        log.LogInformation("We did it");
     }
 }

@@ -57,6 +57,7 @@
     <PackageReference Include="Serilog.Sinks.OpenTelemetry" Version="1.2.0" />
     <PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>

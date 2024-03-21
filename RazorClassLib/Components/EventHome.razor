@@ -8,6 +8,7 @@
 @using RazorClassLib.Data
 @using RazorClassLib.Services
 @using System.Net.Http.Json
+@using System.Diagnostics.Metrics
 
 
 
@@ -146,8 +147,6 @@
     public IEnumerable<Occasion> occasions { get; set; } = new List<Occasion>();
     private List<Occasion> MauiOccasions { get; set; } = new List<Occasion>();
     private List<Occasion> OnlineOccasions { get; set; } = new List<Occasion>();
-
-
 
     protected override async Task OnInitializedAsync()
     {

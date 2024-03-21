@@ -3,6 +3,7 @@ using EnochTelemetry;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using System.Diagnostics.Metrics;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using OpenTelemetry.Logs;
@@ -69,7 +70,7 @@ public partial class Program()
                     o.Endpoint = new Uri("http://otel-collector:4317/")))
               .WithMetrics(metrics => metrics
                   .AddAspNetCoreInstrumentation()
-                  .AddMeter(EnochMetrics.TicketMetricsName)
+                  .AddMeter(EnochMetrics.MetricsName)
                   .AddConsoleExporter()
                   .AddOtlpExporter(o =>
                     o.Endpoint = new Uri("http://otel-collector:4317/")));
