@@ -144,7 +144,7 @@ networks:
   databaseTunnel:
     driver: bridge
 
-volumes:
+volumes: 
   grafana-data:
   prometheus:
 
