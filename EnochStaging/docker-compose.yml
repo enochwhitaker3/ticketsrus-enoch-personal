@@ -148,18 +148,16 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/Denver
-      # - URL=distributeddemo.duckdns.org
       - URL=enoch-tickets-r-us.duckdns.org
-      # - SUBDOMAINS=wildcard
+      - SUBDOMAINS=www,
       - VALIDATION=duckdns
-      - DUCKDNSTOKEN=4c152b80-1321-492f-9baf-8048868772a8
-      # - STAGING=true # protect from rate limiting
-      - STAGING=false
+      - DUCKDNSTOKEN=${DUCKDNS:-blahblahblah} #optional
+      - STAGING=false #optional
     volumes:
       - swag_data:/config
-      - ./nginx-default.conf:/config/nginx/site-confs/default.conf
-    # ports:
-    #   - 6546:443
+      - ./nginx-default.conf:/config/nginx/site-confs/default.conf 
+    ports:
+      - 7922:443
       # - 80:80 #optional
     restart: unless-stopped
      
