@@ -11,9 +11,6 @@ services:
       - 5435:5432
     volumes:
       - ../Dump/20240215.09.46.07.sql:/docker-entrypoint-initdb.d/database.sql
-    networks:
-      - databaseTunnel
-      - otel
     # healthcheck:
     #   test: ["CMD-SHELL", "pg_isready"]
     #   interval: 10s
@@ -28,9 +25,6 @@ services:
       pec_tickets: user id=postgres; password=postgres; server=db; database=postgres; port=5432;
     depends_on:
       - db 
-    networks:
-      - databaseTunnel
-      - otel
     healthcheck:
       test: curl --fail http://localhost:7890/health || exit 1
       interval: 60s
@@ -48,8 +42,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ./blackbox/blackbox.yml:/etc/blackbox/blackbox.yml
     command: --config.file=/etc/blackbox/blackbox.yml
-    networks:
-      otel:
+
      
   prometheus:
     image: prom/prometheus:v2.43.0
@@ -64,8 +57,7 @@ services:
       - prometheus:/prometheus
     depends_on:
       - blackbox
-    networks:
-      otel:
+
       
   loki:
     image: grafana/loki:2.8.0
@@ -77,8 +69,7 @@ services:
     restart: unless-stopped
     ports:
       - 3178:3100
-    networks:
-      otel:
+
 
   grafana-enoch:
     image: grafana/grafana:9.4.7
@@ -98,8 +89,7 @@ services:
     depends_on:
       - prometheus
       - loki
-    networks:
-      otel:
+
       
   otel-collector:
     container_name: otel-enoch
@@ -117,8 +107,7 @@ services:
       - 13135:13133 # Health check
     depends_on:
       - zipkin
-    networks:
-      otel:
+
 
   zipkin:
     container_name: enoch-zipkin
@@ -126,8 +115,7 @@ services:
     restart: always
     ports:
       - 9410:9411
-    networks:
-      otel:
+
 
   # proxy:
   #   image: nginx
@@ -155,16 +143,13 @@ services:
       - STAGING=false #optional
     volumes:
       - swag_data:/config
-      - /nginx-default.conf:/config/nginx/site-confs/default.conf
+      - ./nginx-default.conf:/config/nginx/site-confs/mysite.conf
     ports:
       - 7922:443
       # - 80:80 #optional
     restart: unless-stopped
      
-networks:
-  otel:
-  databaseTunnel:
-    driver: bridge
+
 
 volumes: 
   grafana-data:
