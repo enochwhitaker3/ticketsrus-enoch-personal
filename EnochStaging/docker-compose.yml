@@ -151,7 +151,7 @@ services:
       - URL=enoch-tickets-r-us.duckdns.org
       - SUBDOMAINS=www,
       - VALIDATION=duckdns
-      - DUCKDNSTOKEN=secrets.DUCKDNSTOKEN
+      - DUCKDNSTOKEN=4c152b80-1321-492f-9baf-8048868772a8
       - STAGING=false #optional
     volumes:
       - swag_data:/config
