@@ -140,7 +140,7 @@ services:
       - SUBDOMAINS=www,
       - VALIDATION=duckdns
       - DUCKDNSTOKEN=4c152b80-1321-492f-9baf-8048868772a8
-      - STAGING=false #optional
+      - STAGING=false #optiona1
     volumes:
       - swag_data:/config
       - ./nginx-default.conf:/config/nginx/site-confs/mysite.conf

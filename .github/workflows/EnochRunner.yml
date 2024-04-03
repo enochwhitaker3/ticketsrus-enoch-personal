@@ -41,6 +41,13 @@ jobs:
         run: |
             dotnet test --warnaserror
         working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/Test
+      
+      - name: "Kube Deploying"
+        run: |
+          docker build -t 144.17.92.12:5000/enoch/blazor-web:1 .
+          docker push 144.17.92.12:5000/enoch/blazor-web:1
+          kubectl apply -f kube/
+
 
       - name: Teams Noti
         uses: skitionek/notify-microsoft-teams@master
