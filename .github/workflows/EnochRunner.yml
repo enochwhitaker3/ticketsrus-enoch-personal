@@ -46,7 +46,7 @@ jobs:
         run: |
           docker build -t 144.17.92.12:5000/enoch/blazor-web-enoch:1 .
           docker push 144.17.92.12:5000/enoch/blazor-web-enoch:1
-          kubectl -n enoch-server create configmap blazor-web-postgres-init --from-file=init.sql
+          kubectl -n enoch-server create configmap blazor-web-postgres-init --from-file=Dump/20240215.09.46.07.sql
           kubectl apply -f kube/
 
 
