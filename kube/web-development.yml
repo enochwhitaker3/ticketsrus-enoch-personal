@@ -25,3 +25,4 @@ spec:
           value: Development
         - name: pec_tickets
           value: user id= postgres; password=postgres; server=db; database= postgres; port= 5432
+          
