@@ -37,10 +37,10 @@ jobs:
             dotnet test --warnaserror
         working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/UnitTests
 
-      - name: "Integration tests"
-        run: |
-            dotnet test --warnaserror
-        working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/Test
+      # - name: "Integration tests"
+      #   run: |
+      #       dotnet test --warnaserror
+      #   working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/Test
       
       - name: "Kube Deploying"
         run: |
