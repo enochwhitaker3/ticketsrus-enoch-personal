@@ -54,7 +54,8 @@ public partial class Program()
                         .AddService(serviceName))
                 .AddOtlpExporter(opt =>
                 {
-                    opt.Endpoint = new Uri(builder.Configuration["COLLECTOR_URL"] ?? throw new NullReferenceException("environment variable not set: COLLECTOR_URL"));
+                    // opt.Endpoint = new Uri(builder.Configuration["COLLECTOR_URL"] ?? throw new NullReferenceException("environment variable not set: COLLECTOR_URL"));
+                    opt.Endpoint = new Uri("http://otel-collector:4317/");
                 })
             .AddConsoleExporter();
         });
