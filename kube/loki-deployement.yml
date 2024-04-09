@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: enoch-server
+  name: loki-deployment-enoch
+  labels:
+    app: loki-enoch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loki-enoch
+  template:
+    metadata:
+      labels:
+        app: loki-enoch
+    spec:
+      containers:
+      - name: loki-enoch
+        image: grafana/loki:2.8.0
+        command: [" -config.file=/etc/loki/local-config.yaml" ]
+        ports:
+        - containerPort: 3100
+       

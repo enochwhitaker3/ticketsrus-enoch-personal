@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: enoch-server
+  name: grafana-deployment-enoch
+  labels:
+    app: grafana-enoch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana-enoch
+  template:
+    metadata:
+      labels:
+        app: grafana-enoch
+    spec:
+      containers:
+      - name: grafana-enoch
+        image: grafana/grafana:9.4.7
+        ports:
+        - containerPort: 3000
+

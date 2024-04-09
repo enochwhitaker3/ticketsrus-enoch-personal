@@ -25,3 +25,5 @@ spec:
           value: Development
         - name: pec_tickets
           value: Server=blazor-web-db-service;password=postgres;user id=postgres;database=postgres;
+        - name: COLLECTOR_URL
+          value: http://otel-collector-service-enoch:4317/
