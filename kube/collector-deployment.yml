@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: enoch-server
-  name: otel-colector-deployment-enoch
+  name: otel-collector-deployment-enoch
   labels:
     app: otel-collector-enoch
 spec:

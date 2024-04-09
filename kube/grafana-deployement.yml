@@ -20,4 +20,3 @@ spec:
         image: grafana/grafana:9.4.7
         ports:
         - containerPort: 3000
-

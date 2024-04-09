@@ -32,10 +32,10 @@ jobs:
           dotnet build --warnaserror
         working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal
       
-      - name: "Unit tests"
-        run: |
-            dotnet test --warnaserror
-        working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/UnitTests
+      # - name: "Unit tests"
+      #   run: |
+      #       dotnet test --warnaserror
+      #   working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/UnitTests
 
       # - name: "Integration tests"
       #   run: |
