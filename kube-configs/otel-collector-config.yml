@@ -30,7 +30,7 @@ processors:
   batch:
 
 service:
-  extensions: [zpages, health_check]
+  # extensions: [zpages, health_check]
   pipelines: 
     # metrics: 
     #   receivers: [otlp]
