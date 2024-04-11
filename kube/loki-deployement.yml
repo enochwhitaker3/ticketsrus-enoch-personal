@@ -18,7 +18,7 @@ spec:
       containers:
       - name: loki-enoch
         image: grafana/loki:2.8.0
-        args: [" -config.file=/etc/loki/local-config.yaml" ]
+        # args: [" -config.file=/etc/loki/local-config.yaml" ]
         ports:
         - containerPort: 3100
        
