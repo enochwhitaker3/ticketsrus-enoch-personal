@@ -56,12 +56,13 @@ jobs:
             kubectl -n enoch-server create configmap grafana-datasource-config --from-file=grafana-datasource-config.yml
           cd ..
 
+
+          RUN_ID=${{ github.run_id }}
           for file in ./kube; do
-            echo "Apllying $file"
-            kubectl apply -f "$file"
+            echo "Applying $file"
+            cat $file | envsubst | kubectl apply -f -
           done
-          
-          # kubectl apply -f kube/
+
 
 
       - name: Teams Noti
