@@ -7,5 +7,6 @@ jobs:
         steps:
             - name: backup
               run: |
+                mkdir -p /home/enoch/dumps
                 CONTAINER_NAME=$(kubectl -n enoch-server get pods --no-headers -o custom-columns=":metadata.name" | grep "blazor-web-db-deployment")
-                kubectl -n enoch-server exec -t $CONTAINER_NAME -- pg_dumpall -c -U postgres > /home/enoch/actions-runner/_work/ticketsrus-enoch-personal/ticketsrus-enoch-personal/Dump
+                kubectl -n enoch-server exec -t $CONTAINER_NAME -- pg_dumpall -c -U postgres > /home/enoch/dumps/dump.sql
