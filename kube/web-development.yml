@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: blazor-web-enoch
-        image: 144.17.92.12:5000/enoch/blazor-web-enoch:${RUN_ID}
+        image: 144.17.92.12:5000/enoch/blazor-web-enoch:${$GITHUB_RUN_ID}
         ports:
         - containerPort: 8080
         env:
