@@ -58,7 +58,7 @@ jobs:
 
 
           RUN_ID=${{ github.run_id }}
-          for file in ./kube; do
+          for file in ./kube/*; do
             echo "Applying $file"
             cat $file | envsubst | kubectl apply -f -
           done
