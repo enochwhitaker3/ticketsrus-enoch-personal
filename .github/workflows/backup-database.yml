@@ -1,6 +1,6 @@
 name: backup database
 on:
-    - workflow_dispatch
+    - workflow_dispatch 
 jobs:
     backup:
         runs-on: self-hosted
