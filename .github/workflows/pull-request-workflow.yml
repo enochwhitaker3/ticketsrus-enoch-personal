@@ -14,4 +14,4 @@ jobs:
                 kubectl create namespace enoch-pr-$PULL_REQUEST_ID || true 
 
                 kubectl -n enoch-pr-$PULL_REQUEST_ID delete configmap blazor-web-postgres-init || true
-                kubectl -n enoch-pr-$PULL_REQUEST_ID delete configmap blazor-web-postgres-init --from-file=Dump/20240215.09.46.07.sql
+                kubectl -n enoch-pr-$PULL_REQUEST_ID create configmap blazor-web-postgres-init --from-file=Dump/20240215.09.46.07.sql
