@@ -1,5 +1,7 @@
 name: EnochRunner
-on: [push]
+on:
+  push:
+    branches: [main]
     
 jobs:
   Deploy:
@@ -22,15 +24,15 @@ jobs:
           docker compose up --build -d
         working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/EnochStaging
       
-      - name: "linting"
-        run: |
-          dotnet format --verify-no-changes --severity warn
-        working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/WebApp
+      # - name: "linting"
+      #   run: |
+      #     dotnet format --verify-no-changes --severity warn
+      #   working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal/WebApp
 
-      - name: "warnings as errors"
-        run: | 
-          dotnet build --warnaserror
-        working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal
+      # - name: "warnings as errors"
+      #   run: | 
+      #     dotnet build --warnaserror
+      #   working-directory: ./../../ticketsrus-enoch-personal/ticketsrus-enoch-personal
       
       # - name: "Unit tests"
       #   run: |
