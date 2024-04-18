@@ -11,7 +11,7 @@ jobs:
             - name: deploy kubernetes environment
               run: | 
                 export PULL_REQUEST_ID=${{github.event.pull_request.number}}
-                kubectl create namespace enoch-pr-$PULL_REQUEST_ID || true
+                kubectl create namespace enoch-pr-$PULL_REQUEST_ID || true 
 
                 kubectl -n enoch-pr-$PULL_REQUEST_ID delete configmap blazor-web-postgres-init || true
                 kubectl -n enoch-pr-$PULL_REQUEST_ID delete configmap blazor-web-postgres-init --from-file=Dump/20240215.09.46.07.sql
