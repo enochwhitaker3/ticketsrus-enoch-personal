@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ${NAMESPACE}
+  name: blazor-web-deployment-enoch
+  labels:
+    app: blazor-web-enoch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blazor-web-enoch
+  template:
+    metadata:
+      labels:
+        app: blazor-web-enoch
+    spec:
+      containers:
+      - name: blazor-web-enoch
+        image: 144.17.92.12:5000/enoch/blazor-web-enoch:${$GITHUB_RUN_ID}
+        ports:
+        - containerPort: 8080
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: pec_tickets
+          value: Server=blazor-web-db-service;password=postgres;user id=postgres;database=postgres;
+        - name: COLLECTOR_URL
+          value: http://otel-collector-service-enoch:4317/

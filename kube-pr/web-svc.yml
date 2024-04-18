@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: ${NAMESPACE}
+  name: blazor-web-service-enoch
+spec:
+  type: ClusterIP
+  selector:
+    app: blazor-web-enoch
+  ports:
+    - port: 80
+      targetPort: 8080

@@ -13,5 +13,16 @@ jobs:
                 export PULL_REQUEST_ID=${{github.event.pull_request.number}}
                 kubectl create namespace enoch-pr-$PULL_REQUEST_ID || true 
 
-                kubectl -n enoch-pr-$PULL_REQUEST_ID delete configmap blazor-web-postgres-init || true
-                kubectl -n enoch-pr-$PULL_REQUEST_ID create configmap blazor-web-postgres-init --from-file=Dump/20240215.09.46.07.sql
+                export NAMESPACE="enoch-pr-$PULL_REQUEST_ID"
+                kubectl -n $NAMESPACE delete configmap blazor-web-postgres-init || true
+                kubectl -n $NAMESPACE create configmap blazor-web-postgres-init --from-file=Dump/20240215.09.46.07.sql
+                
+
+                export RUN_SALT="pr-${PULL_REQUEST_ID}-${$GITHUB_RUN_ID}"
+                docker build -t 144.17.92.12:5000/enoch/blazor-web-enoch:pr-$RUN_SALT .
+                docker push 144.17.92.12:5000/enoch/blazor-web-enoch:pr-$RUN_SALT .
+
+                for file in ./kube-pr/*; do
+                    echo "Applying $file"
+                    cat $file | envsubst | kubectl apply -f -
+                done
