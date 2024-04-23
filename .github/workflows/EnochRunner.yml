@@ -48,7 +48,7 @@ jobs:
         run: |
           docker build -t 144.17.92.12:5000/enoch/blazor-web-enoch:$GITHUB_RUN_ID .
           docker push 144.17.92.12:5000/enoch/blazor-web-enoch:$GITHUB_RUN_ID
-          # kubectl -n enoch-server create configmap blazor-web-postgres-init --from-file=Dump/20240215.09.46.07.sql
+          kubectl -n enoch-server create configmap blazor-web-postgres-init --from-file=Dump/20240215.09.46.07.sql || true
 
           cd kube-configs
             kubectl -n enoch-server delete configmap otel-config || true
